@@ -1,16 +1,26 @@
 const express = require("express")
 const { envConfig } = require("./config/envConfig")
-const connectToDatabase = require("./database")
 envConfig()
+const connectToDatabase = require("./database")
 const app = express()
+
+// Parse json
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 connectToDatabase()
+const blogRoutes = require("./routes/blogRoutes.js")
+
+// Blog routes
+app.use("/", blogRoutes)
 
 
-app.get("/", (req,res)=>{
+app.get("/", (req, res) => {
     res.status(200).json({
         message: "Welcome to the MERN MINI project."
     })
 })
+
 
 
 
