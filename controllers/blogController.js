@@ -77,8 +77,53 @@ const fetchSingleBlog = async (req, res) => {
     }
 };
 
+// Update blogs
+const updateBlog = async (req, res) => {
+    const { id } = req.params
+    const { title, subTitle, description } = req.body
+    try {
+        const updateBlog = await Blog.findByIdAndUpdate(id, {
+            title,
+            subTitle,
+            description
+        })
+        if (!updateBlog) {
+            return res.status(404).json({
+                message: "Blog not found!"
+            })
+        }
+        res.status(200).json({
+            message: "Blog updated successfully."
+        })
+    } catch (error) {
+        res.status(400).json({
+            message: error.message
+        })
+    }
+
+}
+
+//Delete Blog
+
+const deleteBlog = async (req, res) => {
+    const { id } = req.params
+
+    const isBlog = await Blog.findById(id)
+    if (!isBlog) {
+        return res.status(400).json({
+            message: "No blog found with that id."
+        })
+    }
+    await Blog.findByIdAndDelete(id)
+    res.status(200).json({
+        message: "Blog deleted successfully!"
+    })
+}
+
 module.exports = {
     createBlog,
     fetchAllBlogs,
-    fetchSingleBlog
+    fetchSingleBlog,
+    updateBlog,
+    deleteBlog
 }

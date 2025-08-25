@@ -14,7 +14,6 @@ const blogRoutes = require("./routes/blogRoutes.js")
 // Blog routes
 app.use("/", blogRoutes)
 
-
 app.get("/", (req, res) => {
     res.status(200).json({
         message: "Welcome to the MERN MINI project."
