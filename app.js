@@ -4,6 +4,15 @@ envConfig()
 const connectToDatabase = require("./database")
 const app = express()
 
+// Cors
+const cors = require("cors")
+app.use(cors(
+    {
+        origin: "*",
+        optionsSuccessStatus: 200
+    }
+))
+
 // Parse json
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

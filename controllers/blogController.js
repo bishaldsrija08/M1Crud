@@ -31,7 +31,7 @@ const fetchAllBlogs = async (req, res) => {
         }
 
         return res.status(200).json({
-            blog: isBlog
+            data: isBlog
         })
     } catch (error) {
         console.error(error);
