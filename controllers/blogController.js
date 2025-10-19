@@ -13,7 +13,7 @@ const createBlog = async (req, res) => {
             subTitle,
             description
         })
-        return res.status(201).json({
+        return res.status(200).json({
             message: "Blog created successfully."
         })
     } catch (error) {
