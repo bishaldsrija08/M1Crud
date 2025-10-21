@@ -8,7 +8,7 @@ const app = express()
 const cors = require("cors")
 app.use(cors(
     {
-        origin: "*",
+        origin: "https://m1-front-crud.vercel.app",
         optionsSuccessStatus: 200
     }
 ))
